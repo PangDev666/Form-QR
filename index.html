@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.png" type="">
+    <link rel="stylesheet" href="style.css">
+    <title>ใบผ่าน</title>
+</head>
+<body>
+    <section class="container">
+        <header>ใบผ่าน</header>
+        <form action="#" class="form">
+            <div class="input-box">
+                <label>ชื่อ-นามสกุล</label>
+                <input type="text" class="fullname" placeholder="กรอกชื่อ-นามสกุล" required/>
+            </div>
+
+            <div class="input-box">
+                <label>รหัสพนักงาน</label>
+                <input type="number" class="employee-code" placeholder="กรอกรหัสพนักงาน" required/>
+            </div>
+            
+            <div class="input-box">
+                <label>แผนก</label>
+                <div class="select-box">
+                    <select class="department">
+                        <option hidden>เลือกแผนก</option>
+                        <option>SL</option>
+                        <option>CS</option>
+                        <option>AC</option>
+                        <option>IT</option>
+                        <option>COS</option>
+                        <option>PL</option>
+                        <option>PU</option>
+                        <option>QSC</option>
+                        <option>QA</option>
+                        <option>LAB</option>
+                        <option>PC</option>
+                        <option>EN</option>
+                        <option>BD</option>
+                        <option>ST</option>
+                        <option>FG</option>
+                        <option>OHSE</option>
+                        <option>MT</option>
+                        <option>PD-Office</option>
+                        <option>Line A</option>
+                        <option>Line B</option>
+                        <option>Line C</option>
+                        <option>Line D</option>
+                        <option>Line E</option>
+                        <option>Line F</option>
+                        <option>Line H</option>
+                        <option>Line I</option>
+                        <option>Line J</option>
+                        <option>Line K</option>
+                        <option>Line L</option>
+                        <option>Line O</option>
+                        <option>Line P</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <label>ออกนอกบริเวณโรงงาน เนื่องจาก..</label>
+                <input type="text" class="leave" placeholder="กรอกรายละเอียด" required/>
+            </div>
+
+            <div class="input-box">
+                <label>วันที่</label>
+                <input type="date" class="date" id="dateInput" disabled>
+            </div>
+
+            <div class="column">
+                <div class="input-box">
+                    <label>เวลาออก</label>
+                    <p>เวลาออกจากโรงงาน</p>
+                    <input type="time" class="timeOne" placeholder="เวลาออกจากโรงงาน" required/>
+                </div>
+
+                <div class="input-box">
+                    <label>เวลากลับ</label>
+                    <p>เวลากลับเข้าโรงงาน</p>
+                    <input type="time" class="timeTwo" placeholder="เวลากลับเข้าโรงงาน" required/>
+                </div>
+            </div>
+
+            <button class="generate-btn">QR Code</button>
+
+            <div class="qr-code">
+                <img src="img/QRcode.png" class="qr-image">
+            </div>
+        </form>
+    </section>
+
+<script>
+    document.getElementById("dateInput").valueAsDate = new Date();
+
+    var container = document.querySelector(".container");
+    var generateBtn = document.querySelector(".generate-btn");
+    var fullname= document.querySelector(".fullname");
+    var employeeCode = document.querySelector(".employee-code");
+    var department = document.querySelector(".department");
+    var leave = document.querySelector(".leave");
+    var timeOne = document.querySelector(".timeOne");
+    var timeTwo = document.querySelector(".timeTwo");
+    var qrImg = document.querySelector(".qr-image");
+    var date = document.querySelector(".date")
+    const downloadBtn = document.getElementById("download");
+
+    generateBtn.onclick = function (){
+        if(fullname.value.length > 0 & employeeCode.value.length > 0 & department.value.length > 0 
+            & leave.value.length > 0 & date.value.length > 0 & timeOne.value.length > 0 & timeTwo.value.length > 0){
+            container.classList.add("active");
+            qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=170x170&data="
+            + fullname.value +"|"+ employeeCode.value +"|"+ department.value +"|"+ leave.value +"|"+ date.value +"|"+ timeOne.value +"|"+ timeTwo.value;
+        }
+
+
+    }
+</script>
+
+</body>
+</html>
